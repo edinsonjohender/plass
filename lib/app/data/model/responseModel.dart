@@ -6,9 +6,10 @@ import 'dart:convert';
 List<ResponseMododel> responseMododelFromJson(String str) => List<ResponseMododel>.from(json.decode(str).map((x) => ResponseMododel.fromJson(x)));
 
 String responseMododelToJson(List<ResponseMododel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
+ 
 class ResponseMododel {
     ResponseMododel({
+        this.code,
         this.kind,
         this.idToken,
         this.email,
@@ -19,6 +20,7 @@ class ResponseMododel {
         this.registered,
     });
 
+    int? code;
     String? kind;
     String? idToken;
     String? email;
@@ -29,6 +31,7 @@ class ResponseMododel {
     bool? registered;
 
     factory ResponseMododel.fromJson(Map<String, dynamic> json) => ResponseMododel(
+        code: json["code"] == null ? null : json["code"],
         kind: json["kind"],
         idToken: json["idToken"],
         email: json["email"],
@@ -40,6 +43,7 @@ class ResponseMododel {
     );
 
     Map<String, dynamic> toJson() => {
+        "code": code,
         "kind": kind,
         "idToken": idToken,
         "email": email,

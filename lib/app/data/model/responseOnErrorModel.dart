@@ -8,16 +8,20 @@ String responseOnErrorToJson(ResponseOnError data) => json.encode(data.toJson())
 
 class ResponseOnError {
     ResponseOnError({
+        this.code,
         this.error,
     });
 
     ResponseOnErrorError? error;
+    int? code;
 
     factory ResponseOnError.fromJson(Map<String, dynamic> json) => ResponseOnError(
+        code: json["code"] == null ? null : json["code"],
         error: ResponseOnErrorError.fromJson(json["error"]),
     );
 
     Map<String, dynamic> toJson() => {
+        "code": code,
         "error": error!.toJson(),
     };
 }

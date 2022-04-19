@@ -15,7 +15,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (_)=>Scaffold(
-        body: Container(),
+        body: Center(
+          child: Card(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('${_.appController.user.email}'),
+                Text('${_.appController.user.kind}'),
+              ],
+            ),
+          ),
+        ),
       )
     );
   }

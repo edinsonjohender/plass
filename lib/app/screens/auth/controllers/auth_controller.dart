@@ -33,12 +33,13 @@ class AuthController extends GetxController{
       "password" : pass,
     };
     var response = await PlassApi.post(path: '/v1/accounts:signInWithPassword', body: body, token: Constants.firebaseToken);
-
-      if(response.error != null){
-        print(response);
-          //appController.user = response;   isLoader = false; Get.toNamed('/home'); 
-      }
-
+    print(response.code);
+    if(response.code == 200){
+        appController.user = response;   
+        Get.toNamed('/home'); 
+    }
+      
+    isLoader = false;
 
     
     update();

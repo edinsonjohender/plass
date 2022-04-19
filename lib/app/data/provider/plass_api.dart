@@ -58,8 +58,8 @@ class PlassApi {
 
   static _returnResponse(response, path) {
   
-    ResponseMododel _response = ResponseMododel();
-    ResponseOnError _responseOnError = ResponseOnError();
+    ResponseMododel _response = ResponseMododel(code: 200);
+    ResponseOnError _responseOnError = ResponseOnError(code: 201);
     int _statusCode = 0;
 
     if(response != null){
@@ -67,6 +67,7 @@ class PlassApi {
       _statusCode = response.statusCode;
       if(_statusCode == 200){
         _response = ResponseMododel.fromJson(json.decode(response.body.toString()));
+        _response.code = 200;
       }else{
         _responseOnError = ResponseOnError.fromJson(json.decode(response.body.toString()));
       }
